@@ -1,0 +1,76 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+
+android {
+    compileSdk = compile_sdk_version
+
+    defaultConfig {
+        applicationId "com.studies.appmodularization"
+        minSdk min_sdk_version
+        targetSdk target_sdk_version
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_11
+    }
+    viewBinding {
+        enabled true
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation project(':domain')
+
+    //CORE
+    implementation "androidx.core:core-ktx:$core_ktx_version"
+
+    //LAYOUT
+    implementation "androidx.appcompat:appcompat:$appcompat_version"
+    implementation "androidx.constraintlayout:constraintlayout:$constraint_layout_version"
+
+    //MATERIAL
+    implementation "com.google.android.material:material:$material_version"
+
+    //UNIT TEST
+    testImplementation "org.junit.jupiter:junit-jupiter-engine:$junit_jupiter_version"
+    testImplementation 'org.junit.vintage:junit-vintage-engine'
+    testImplementation "io.mockk:mockk:$mockk_version"
+    testImplementation "android.arch.core:core-testing:$lifecycle_version"
+    testImplementation "org.robolectric:robolectric:$robolectric_version"
+    testImplementation "org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutines_version"
+    testImplementation "io.insert-koin:koin-test:$koin_version"
+    testImplementation "io.insert-koin:koin-test-junit4:$koin_version"
+
+    //UI TESTS
+    androidTestImplementation "androidx.test.espresso:espresso-core:$espresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$espresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-idling-resource:$espresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$espresso_version"
+    androidTestImplementation "androidx.test.espresso:espresso-web:$espresso_version"
+    androidTestImplementation "androidx.test.ext:junit:$junit_test_version"
+    androidTestImplementation "androidx.test:runner:$androidx_runner_version"
+    androidTestImplementation "io.mockk:mockk-android:$mockk_version"
+    androidTestImplementation "androidx.arch.core:core-testing:$arch_core_testing_version"
+    androidTestImplementation "io.insert-koin:koin-test:$koin_version"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$ui_automator_version"
+    androidTestImplementation "androidx.navigation:navigation-testing:$nav_version"
+}
