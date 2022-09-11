@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">Simple Service Application</string>
+
+    <string name="start">Start</string>>
+    <string name="stop">Stop</string>>
+    <string name="service_stopped">Service Stopped</string>>
 </resources>
